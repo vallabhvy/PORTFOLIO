@@ -76,10 +76,11 @@ This repo is set up to deploy automatically on every push to `main`.
 ### GitHub Pages (recommended)
 
 1. Push to `main` on [github.com/vallabhvy/PORTFOLIO](https://github.com/vallabhvy/PORTFOLIO)
-2. Go to **Settings → Pages**
-3. Under **Build and deployment**, set **Source** to **GitHub Actions**
-4. The workflow in `.github/workflows/deploy.yml` builds and publishes to  
-   **https://vallabhvy.github.io/PORTFOLIO/**
+2. Go to **[Settings → Pages](https://github.com/vallabhvy/PORTFOLIO/settings/pages)**
+3. Under **Build and deployment → Source**, choose **GitHub Actions** (not "Deploy from a branch")
+4. Re-run the failed workflow: **Actions → Build and Deploy → Re-run all jobs**
+
+Until step 3 is done, the deploy job will fail with a 404.
 
 The build sets `BASE_PATH=/PORTFOLIO/` so asset paths resolve correctly on GitHub Pages.
 
