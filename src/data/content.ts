@@ -33,7 +33,7 @@ export const profile = {
   availability: "open to backend & full-stack roles",
   email: "vallabhvyelsangikar@gmail.com",
   github: "https://github.com/vallabhvy",
-  linkedin: "https://linkedin.com/in/vallabh",
+  linkedin: "www.linkedin.com/in/vallabh-v-yelsangikar-baa316256",
   resumeUrl: "/Vallabh_V_Yelsangikar_resume.pdf",
   resumeDownloadName: "Vallabh_V_Yelsangikar_resume.pdf",
   tagline:
@@ -49,7 +49,10 @@ export const heroTyping = [
 
 export const aboutFacts: { k: string; v: string }[] = [
   { k: "Based in", v: "Bengaluru, India" },
-  { k: "Studying", v: "B.E, Information Science — JSS Academy of Technical Education" },
+  {
+    k: "Studying",
+    v: "B.E, Information Science — JSS Academy of Technical Education",
+  },
   { k: "Graduating", v: "2026" },
   { k: "Currently", v: "Backend-leaning full-stack engineer" },
   { k: "Interested in", v: "Distributed systems, fintech, developer tools" },
@@ -67,12 +70,33 @@ export const skillGroups: SkillGroup[] = [
   { title: "Languages", items: ["Java", "JavaScript", "TypeScript", "SQL"] },
   {
     title: "Backend",
-    items: ["Spring Boot", "REST APIs", "JPA / Hibernate", "Spring Security", "Node.js / Express", "Microservices"],
+    items: [
+      "Spring Boot",
+      "REST APIs",
+      "JPA / Hibernate",
+      "Spring Security",
+      "Node.js / Express",
+      "Microservices",
+    ],
   },
-  { title: "Frontend", items: ["React", "Mantine UI", "HTML / CSS", "Vite", "Zustand"] },
+  {
+    title: "Frontend",
+    items: ["React", "Mantine UI", "HTML / CSS", "Vite", "Zustand"],
+  },
   { title: "Data & Messaging", items: ["PostgreSQL", "Kafka", "ChromaDB"] },
-  { title: "Systems & CS", items: ["Data Structures & Algorithms", "Operating Systems", "Computer Networks", "DBMS"] },
-  { title: "Tools", items: ["Docker", "Git / GitHub", "Postman", "Swagger", "IntelliJ IDEA"] },
+  {
+    title: "Systems & CS",
+    items: [
+      "Data Structures & Algorithms",
+      "Operating Systems",
+      "Computer Networks",
+      "DBMS",
+    ],
+  },
+  {
+    title: "Tools",
+    items: ["Docker", "Git / GitHub", "Postman", "Swagger", "IntelliJ IDEA"],
+  },
 ];
 
 export type ProjectBlock = { label: string; body: string };
@@ -143,7 +167,7 @@ export const projects: Project[] = [
       },
       {
         label: "What I learned",
-        body: "Web3j is not forgiving about gas estimation under load, and \"put it on the blockchain\" is a much smaller part of a real system than the phrase suggests — most of the actual engineering was in the permissioning and the upload pipeline, not the smart contract itself.",
+        body: 'Web3j is not forgiving about gas estimation under load, and "put it on the blockchain" is a much smaller part of a real system than the phrase suggests — most of the actual engineering was in the permissioning and the upload pipeline, not the smart contract itself.',
       },
     ],
     stack: [
@@ -194,7 +218,7 @@ export const projects: Project[] = [
     role: "Solo",
     status: "In progress",
     summary:
-      "A Python execution visualizer — it steps through code and shows variable state, recursion depth, and call trees, built because \"just read the code\" is bad advice for anyone learning recursion for the first time.",
+      'A Python execution visualizer — it steps through code and shows variable state, recursion depth, and call trees, built because "just read the code" is bad advice for anyone learning recursion for the first time.',
     blocks: [
       {
         label: "Solution",
@@ -269,7 +293,7 @@ export const projects: Project[] = [
     blocks: [
       {
         label: "Architecture",
-        body: "Node/Express REST APIs with JWT auth, and MongoDB collections modeled around users, projects, and tasks rather than a single flat \"todos\" table, so filtering and per-project views stay fast as data grows.",
+        body: 'Node/Express REST APIs with JWT auth, and MongoDB collections modeled around users, projects, and tasks rather than a single flat "todos" table, so filtering and per-project views stay fast as data grows.',
       },
       {
         label: "What I learned",
@@ -374,14 +398,46 @@ export const timeline: TimelineItem[] = [
 export type LearningItem = { name: string; note: string; icon?: IconType };
 
 export const learning: LearningItem[] = [
-  { name: "Distributed Systems", note: "Consensus, replication, failure modes", icon: undefined },
-  { name: "Kafka", note: "Event streaming & log-based architecture", icon: SiApachekafka },
-  { name: "Redis", note: "Caching, rate limiting, ephemeral state", icon: SiRedis },
-  { name: "Docker", note: "Reproducible builds & local parity", icon: SiDocker },
-  { name: "Kubernetes", note: "Orchestration & self-healing deploys", icon: SiKubernetes },
-  { name: "System Design", note: "Trade-offs at scale, back-of-envelope math", icon: undefined },
-  { name: "Cloud Infrastructure", note: "OCI foundations, managed services", icon: undefined },
-  { name: "Microservices", note: "Boundaries, contracts, observability", icon: undefined },
+  {
+    name: "Distributed Systems",
+    note: "Consensus, replication, failure modes",
+    icon: undefined,
+  },
+  {
+    name: "Kafka",
+    note: "Event streaming & log-based architecture",
+    icon: SiApachekafka,
+  },
+  {
+    name: "Redis",
+    note: "Caching, rate limiting, ephemeral state",
+    icon: SiRedis,
+  },
+  {
+    name: "Docker",
+    note: "Reproducible builds & local parity",
+    icon: SiDocker,
+  },
+  {
+    name: "Kubernetes",
+    note: "Orchestration & self-healing deploys",
+    icon: SiKubernetes,
+  },
+  {
+    name: "System Design",
+    note: "Trade-offs at scale, back-of-envelope math",
+    icon: undefined,
+  },
+  {
+    name: "Cloud Infrastructure",
+    note: "OCI foundations, managed services",
+    icon: undefined,
+  },
+  {
+    name: "Microservices",
+    note: "Boundaries, contracts, observability",
+    icon: undefined,
+  },
 ];
 
 export type NavItem = { href: string; label: string };
