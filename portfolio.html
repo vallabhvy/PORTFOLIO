@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vallabh Yelsangikar — Software Engineer</title>
+<meta name="description" content="Vallabh Yelsangikar — backend-leaning software engineer building billing systems, blockchain-backed medical records, offline AI tools, and real-time platforms.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff;
+    --fg:#0a0a0a;
+    --muted:#6b6b6b;
+    --faint:#9a9a9a;
+    --border:#e3e3e1;
+    --border-strong:#0a0a0a;
+    --panel:#fafafa;
+    --mono: 'IBM Plex Mono', ui-monospace, monospace;
+    --sans: 'Inter', -apple-system, sans-serif;
+    --max: 1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--fg);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  ::selection{background:var(--fg); color:var(--bg);}
+
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 28px;}
+  .mono{font-family:var(--mono);}
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--fg);
+    outline-offset:3px;
+  }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(255,255,255,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    height:64px;
+  }
+  .logo{
+    font-family:var(--mono); font-weight:600; font-size:15px;
+    letter-spacing:0.02em;
+    text-decoration:none;
+  }
+  .logo span{color:var(--faint);}
+  nav.links{display:flex; gap:28px; align-items:center;}
+  nav.links a{
+    font-family:var(--mono); font-size:13px; text-decoration:none;
+    color:var(--muted); letter-spacing:0.01em;
+    position:relative; padding:4px 0;
+  }
+  nav.links a:hover{color:var(--fg);}
+  .nav-toggle{display:none; background:none; border:1px solid var(--border-strong); width:36px; height:36px; align-items:center; justify-content:center; cursor:pointer;}
+  .nav-toggle span, .nav-toggle span::before, .nav-toggle span::after{
+    content:''; display:block; width:16px; height:1px; background:var(--fg); position:relative;
+  }
+  .nav-toggle span::before{position:absolute; top:-5px;}
+  .nav-toggle span::after{position:absolute; top:5px;}
+
+  @media (max-width:820px){
+    nav.links{
+      display:none;
+      position:absolute; top:64px; left:0; right:0;
+      background:var(--bg); border-bottom:1px solid var(--border);
+      flex-direction:column; align-items:flex-start; gap:0; padding:8px 28px 20px;
+    }
+    nav.links.open{display:flex;}
+    nav.links a{padding:12px 0; width:100%; border-bottom:1px solid var(--border);}
+    .nav-toggle{display:flex;}
+  }
+
+  /* ---------- SECTION SCAFFOLD ---------- */
+  section{padding:110px 0; border-bottom:1px solid var(--border);}
+  section:last-of-type{border-bottom:none;}
+  @media (max-width:820px){ section{padding:72px 0;} }
+
+  .eyebrow{
+    font-family:var(--mono); font-size:12px; letter-spacing:0.12em;
+    color:var(--faint); text-transform:uppercase; margin:0 0 18px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:''; width:22px; height:1px; background:var(--faint);}
+
+  h2.section-title{
+    font-family:var(--sans); font-weight:700; font-size:clamp(28px,4vw,42px);
+    letter-spacing:-0.02em; margin:0 0 44px; max-width:720px;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding-top:120px; padding-bottom:100px; border-bottom:1px solid var(--border);
+    min-height:calc(100vh - 64px);
+    display:flex; flex-direction:column; justify-content:center;
+  }
+  .hero-kicker{
+    font-family:var(--mono); font-size:13px; color:var(--muted);
+    display:flex; align-items:center; gap:10px; margin-bottom:28px;
+  }
+  .dot{width:7px; height:7px; border-radius:50%; background:var(--fg); flex-shrink:0;
+    animation:pulse 2.2s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:1;} 50%{opacity:0.25;}}
+
+  h1.hero-name{
+    font-size:clamp(42px,8vw,84px); font-weight:700; letter-spacing:-0.03em;
+    margin:0 0 4px; line-height:1.02;
+  }
+  .hero-title{
+    font-family:var(--mono); font-size:clamp(15px,2vw,19px); color:var(--muted);
+    margin:14px 0 32px; max-width:640px;
+  }
+  .hero-terminal{
+    font-family:var(--mono); font-size:clamp(14px,1.6vw,16px); color:var(--fg);
+    background:var(--panel); border:1px solid var(--border); padding:20px 22px;
+    max-width:640px; margin-bottom:40px;
+  }
+  .hero-terminal .line1{color:var(--faint);}
+  #typed-out::after{content:'▌'; animation:blink 1s step-end infinite; margin-left:2px;}
+  @keyframes blink{50%{opacity:0;}}
+
+  .hero-actions{display:flex; flex-wrap:wrap; gap:14px;}
+  .btn{
+    font-family:var(--mono); font-size:13px; letter-spacing:0.02em;
+    padding:13px 22px; text-decoration:none; display:inline-flex; align-items:center; gap:8px;
+    border:1px solid var(--border-strong); transition:background .15s ease, color .15s ease;
+  }
+  .btn-solid{background:var(--fg); color:var(--bg);}
+  .btn-solid:hover{background:#2a2a2a;}
+  .btn-ghost{background:transparent; color:var(--fg);}
+  .btn-ghost:hover{background:var(--fg); color:var(--bg);}
+
+  /* ---------- REVEAL ---------- */
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{display:grid; grid-template-columns:1fr 1.4fr; gap:64px;}
+  @media (max-width:820px){ .about-grid{grid-template-columns:1fr; gap:32px;} }
+  .about-copy p{margin:0 0 20px; color:#2a2a2a; font-size:17px; max-width:56ch;}
+  .about-copy p:last-child{margin-bottom:0;}
+  .facts{border-top:1px solid var(--border);}
+  .fact{
+    display:flex; justify-content:space-between; gap:20px; padding:18px 0;
+    border-bottom:1px solid var(--border); font-family:var(--mono); font-size:13px;
+  }
+  .fact .k{color:var(--faint);}
+  .fact .v{text-align:right; color:var(--fg);}
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:0; border-top:1px solid var(--border); border-left:1px solid var(--border);}
+  @media (max-width:900px){ .skills-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:560px){ .skills-grid{grid-template-columns:1fr;} }
+  .skill-cell{
+    border-right:1px solid var(--border); border-bottom:1px solid var(--border);
+    padding:28px 26px;
+  }
+  .skill-cell h3{
+    font-family:var(--mono); font-size:12px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--faint); margin:0 0 16px; font-weight:600;
+  }
+  .skill-cell ul{list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:8px 10px;}
+  .skill-cell li{
+    font-size:14px; color:var(--fg); padding:6px 0;
+  }
+
+  /* ---------- PROJECTS ---------- */
+  .project{
+    display:grid; grid-template-columns:0.85fr 1.15fr; gap:56px; align-items:start;
+    padding:64px 0; border-bottom:1px solid var(--border);
+  }
+  .project:first-of-type{padding-top:0;}
+  .project:last-of-type{border-bottom:none; padding-bottom:0;}
+  .project.flip{grid-template-columns:1.15fr 0.85fr;}
+  .project.flip .project-meta{order:2;}
+  .project.flip .project-body{order:1;}
+  @media (max-width:900px){
+    .project, .project.flip{grid-template-columns:1fr; gap:24px;}
+    .project.flip .project-meta{order:0;} .project.flip .project-body{order:0;}
+  }
+  .project-index{
+    font-family:var(--mono); font-size:13px; color:var(--faint); margin-bottom:10px;
+  }
+  .project-meta{
+    font-family:var(--mono); font-size:12.5px; border:1px solid var(--border); padding:18px;
+    background:var(--panel);
+  }
+  .meta-row{display:flex; gap:14px; padding:9px 0; border-bottom:1px solid var(--border);}
+  .meta-row:last-child{border-bottom:none;}
+  .meta-row .k{color:var(--faint); flex:0 0 84px;}
+  .meta-row .v{color:var(--fg);}
+  .project-body h3{
+    font-size:clamp(22px,3vw,30px); font-weight:700; letter-spacing:-0.01em; margin:0 0 14px;
+  }
+  .project-body p{margin:0 0 16px; color:#2a2a2a; font-size:15.5px; max-width:60ch;}
+  .project-body .label{
+    font-family:var(--mono); font-size:11.5px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--faint); margin:20px 0 6px;
+  }
+  .project-body .label:first-of-type{margin-top:24px;}
+  .project-links{display:flex; gap:16px; margin-top:20px;}
+  .project-links a{
+    font-family:var(--mono); font-size:13px; text-decoration:none; border-bottom:1px solid var(--fg);
+    padding-bottom:2px;
+  }
+  .stack-tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:6px;}
+  .stack-tags span{
+    font-family:var(--mono); font-size:12px; border:1px solid var(--border); padding:4px 9px;
+  }
+
+  /* ---------- PHILOSOPHY ---------- */
+  .phil-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:36px;}
+  @media (max-width:820px){ .phil-grid{grid-template-columns:1fr;} }
+  .phil-item{border-top:1px solid var(--border-strong); padding-top:20px;}
+  .phil-item h3{font-size:18px; margin:0 0 10px; font-weight:600;}
+  .phil-item p{margin:0; color:var(--muted); font-size:14.5px;}
+
+  /* ---------- EXPERIENCE ---------- */
+  .xp-head{display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; margin-bottom:26px; align-items:baseline;}
+  .xp-head h3{font-size:22px; margin:0; font-weight:700;}
+  .xp-head .dates{font-family:var(--mono); font-size:13px; color:var(--faint);}
+  .xp-org{font-family:var(--mono); font-size:13px; color:var(--muted); margin-bottom:28px;}
+  .xp-list{margin:0; padding:0; list-style:none; max-width:760px;}
+  .xp-list li{
+    position:relative; padding-left:22px; margin-bottom:16px; color:#2a2a2a; font-size:15.5px;
+  }
+  .xp-list li::before{content:'—'; position:absolute; left:0; color:var(--faint);}
+
+  /* ---------- EDUCATION / LEARNING timeline ---------- */
+  .timeline{border-left:1px solid var(--border); margin-left:6px; padding-left:30px;}
+  .t-item{position:relative; padding-bottom:36px;}
+  .t-item:last-child{padding-bottom:0;}
+  .t-item::before{
+    content:''; position:absolute; left:-35px; top:4px; width:9px; height:9px;
+    background:var(--bg); border:1px solid var(--fg); border-radius:50%;
+  }
+  .t-year{font-family:var(--mono); font-size:12.5px; color:var(--faint); margin-bottom:6px;}
+  .t-title{font-size:17px; font-weight:600; margin:0 0 6px;}
+  .t-desc{color:var(--muted); font-size:14.5px; margin:0;}
+
+  .learning-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); border:1px solid var(--border);}
+  @media (max-width:780px){ .learning-grid{grid-template-columns:repeat(2,1fr);} }
+  .learning-cell{background:var(--bg); padding:22px; font-family:var(--mono); font-size:13.5px;}
+
+  /* ---------- CONTACT ---------- */
+  .contact-wrap{display:flex; flex-direction:column; align-items:flex-start;}
+  .contact-big{
+    font-size:clamp(32px,6vw,58px); font-weight:700; letter-spacing:-0.02em; line-height:1.1;
+    margin:0 0 40px; max-width:820px;
+  }
+  .contact-big a{text-decoration:underline; text-decoration-color:var(--border-strong); text-underline-offset:8px;}
+  .contact-big a:hover{text-decoration-color:transparent;}
+  .contact-links{display:flex; flex-wrap:wrap; gap:14px;}
+
+  footer{padding:36px 0;}
+  .footer-inner{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;
+    font-family:var(--mono); font-size:12.5px; color:var(--faint);
+  }
+  footer a{text-decoration:none; color:var(--faint);}
+  footer a:hover{color:var(--fg);}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="logo">VY<span>.dev</span></a>
+    <nav class="links" id="navLinks">
+      <a href="#work">Work</a>
+      <a href="#philosophy">Philosophy</a>
+      <a href="#experience">Experience</a>
+      <a href="#learning">Learning</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false"><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" style="border-bottom:1px solid var(--border);">
+    <div class="wrap">
+      <div class="hero-kicker"><span class="dot"></span> Bengaluru, India — open to backend &amp; full-stack roles</div>
+      <h1 class="hero-name">Vallabh Yelsangikar</h1>
+      <p class="hero-title">Software engineer. I spend most of my time on backend systems — Spring Boot, PostgreSQL, auth, APIs — and enough of the frontend to ship the whole thing myself.</p>
+      <div class="hero-terminal">
+        <div class="line1">// what I've been building</div>
+        <span id="typed-out"></span>
+      </div>
+      <div class="hero-actions">
+        <a class="btn btn-solid" href="#work">View projects</a>
+        <a class="btn btn-ghost" href="#" id="resumeBtn">Download resume</a>
+        <a class="btn btn-ghost" href="https://github.com/vallabh" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn btn-ghost" href="https://linkedin.com/in/vallabh" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap reveal">
+      <p class="eyebrow">About</p>
+      <div class="about-grid">
+        <div class="facts">
+          <div class="fact"><span class="k">Based in</span><span class="v">Bengaluru, India</span></div>
+          <div class="fact"><span class="k">Studying</span><span class="v">B.E, Information Science<br>JSS Academy of Technical Education</span></div>
+          <div class="fact"><span class="k">Graduating</span><span class="v">2026</span></div>
+          <div class="fact"><span class="k">Currently</span><span class="v">Backend-leaning full-stack engineer</span></div>
+          <div class="fact"><span class="k">Interested in</span><span class="v">Distributed systems, fintech, developer tools</span></div>
+        </div>
+        <div class="about-copy">
+          <p>I got into engineering the usual way — wanting to know what was actually happening underneath the frameworks I was using. That question hasn't really gone away. I still find myself reading the Spring source, tracing a request through middleware, or asking why a query is slow before I ask how to cache around it.</p>
+          <p>Most of what I've built has come out of trying to solve a specific, ordinary problem properly: a shop that needed a working billing system, a records system where patients don't have to trust a single database administrator, a way for accountants to use an LLM without their client data leaving the laptop. None of these needed to be clever. They needed to be correct, and to keep working after I stopped looking at them.</p>
+          <p>I like backend work because the constraints are honest — a schema either models the domain or it doesn't, a race condition either exists or it doesn't. I do the frontend too, mostly so I understand the whole system I'm shipping, not just my half of it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="wrap reveal">
+      <p class="eyebrow">Skills</p>
+      <h2 class="section-title">What I actually use, day to day.</h2>
+      <div class="skills-grid">
+        <div class="skill-cell">
+          <h3>Languages</h3>
+          <ul><li>Java</li><li>JavaScript</li><li>TypeScript</li><li>SQL</li><li>Solidity</li></ul>
+        </div>
+        <div class="skill-cell">
+          <h3>Backend</h3>
+          <ul><li>Spring Boot</li><li>REST APIs</li><li>JPA / Hibernate</li><li>Spring Security</li><li>Node.js / Express</li><li>Microservices</li></ul>
+        </div>
+        <div class="skill-cell">
+          <h3>Frontend</h3>
+          <ul><li>React</li><li>Mantine UI</li><li>HTML / CSS</li><li>Vite</li></ul>
+        </div>
+        <div class="skill-cell">
+          <h3>Data &amp; Messaging</h3>
+          <ul><li>PostgreSQL</li><li>MongoDB</li><li>Kafka</li><li>IPFS</li></ul>
+        </div>
+        <div class="skill-cell">
+          <h3>Systems &amp; CS</h3>
+          <ul><li>Data Structures &amp; Algorithms</li><li>Operating Systems</li><li>Computer Networks</li><li>DBMS</li></ul>
+        </div>
+        <div class="skill-cell">
+          <h3>Tools</h3>
+          <ul><li>Docker</li><li>Git / GitHub</li><li>Postman</li><li>Swagger</li><li>IntelliJ IDEA</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="work">
+    <div class="wrap reveal">
+      <p class="eyebrow">Featured work</p>
+      <h2 class="section-title">Projects I've taken from an empty repo to something that runs.</h2>
+
+      <!-- BillNow -->
+      <div class="project">
+        <div class="project-meta">
+          <div class="meta-row"><span class="k">Project</span><span class="v">BillNow</span></div>
+          <div class="meta-row"><span class="k">Role</span><span class="v">Solo, full-stack</span></div>
+          <div class="meta-row"><span class="k">Stack</span><span class="v">Java, Spring Boot, PostgreSQL, React, Razorpay</span></div>
+          <div class="meta-row"><span class="k">Status</span><span class="v">Active</span></div>
+        </div>
+        <div class="project-body">
+          <div class="project-index">01 / Billing &amp; POS</div>
+          <h3>BillNow</h3>
+          <p>A billing and invoicing system for small retail businesses — order management, invoice generation, and payment tracking, built the way an actual finance team would need it, not a demo.</p>
+          <p class="label">Problem</p>
+          <p>Most small-shop billing tools are either spreadsheets held together by habit, or POS software too heavy for a single till. I wanted something that generates a correct invoice, tracks a payment against it, and doesn't lose data if two orders come in at once.</p>
+          <p class="label">Architecture</p>
+          <p>Spring Boot REST APIs backed by normalized PostgreSQL tables for customers, invoices, orders, and payments — the schema is deliberately boring, because financial records are the one place I didn't want to be clever. Razorpay handles UPI and cash reconciliation on top of that.</p>
+          <p class="label">Challenges</p>
+          <p>Getting Razorpay's webhook payloads to map cleanly onto internal order state without double-counting a payment took more iteration than the rest of the payment flow combined. I ended up standardizing all JSON handling through Jackson's ObjectMapper to stop silent parsing mismatches between the two systems.</p>
+          <div class="stack-tags"><span>Spring Boot</span><span>JPA/Hibernate</span><span>PostgreSQL</span><span>React</span><span>Razorpay</span></div>
+          <div class="project-links">
+            <a href="https://github.com/vallabhvy/BILL-NOW" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- MedRack -->
+      <div class="project flip">
+        <div class="project-meta">
+          <div class="meta-row"><span class="k">Project</span><span class="v">MedRack</span></div>
+          <div class="meta-row"><span class="k">Role</span><span class="v">Solo, full-stack</span></div>
+          <div class="meta-row"><span class="k">Stack</span><span class="v">Java, Spring Boot, React, PostgreSQL, IPFS, Polygon, BioBERT</span></div>
+          <div class="meta-row"><span class="k">Status</span><span class="v">Active</span></div>
+        </div>
+        <div class="project-body">
+          <div class="project-index">02 / Healthcare records</div>
+          <h3>MedRack</h3>
+          <p>An electronic health record system built around a simple idea: a patient should control access to their own records, and there should be a verifiable audit trail of who touched them and when.</p>
+          <p class="label">Problem</p>
+          <p>Traditional EHR access logs are just database rows another admin can quietly edit. I wanted an access history that's tamper-evident by construction, not by policy.</p>
+          <p class="label">Architecture</p>
+          <p>Medical files are encrypted and stored on IPFS; only the file's reference — not the file itself — gets written to a Polygon smart contract, so the chain records provenance without ever holding sensitive data. Spring Boot handles auth, role-based permissions, and the REST layer between the React frontend and both storage systems.</p>
+          <p class="label">What I learned</p>
+          <p>Web3j is not forgiving about gas estimation under load, and "put it on the blockchain" is a much smaller part of a real system than the phrase suggests — most of the actual engineering was in the permissioning and the upload pipeline, not the smart contract itself.</p>
+          <div class="stack-tags"><span>Spring Boot</span><span>Polygon / Solidity</span><span>IPFS</span><span>PostgreSQL</span><span>React</span></div>
+          <div class="project-links">
+            <a href="https://github.com/vallabhvy/MEDRACK" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Audit-Legal -->
+      <div class="project">
+        <div class="project-meta">
+          <div class="meta-row"><span class="k">Project</span><span class="v">Audit-Legal</span></div>
+          <div class="meta-row"><span class="k">Role</span><span class="v">Solo, full-stack</span></div>
+          <div class="meta-row"><span class="k">Stack</span><span class="v">Tauri, Rust, React, FastAPI, Ollama, ChromaDB</span></div>
+          <div class="meta-row"><span class="k">Status</span><span class="v">Active</span></div>
+        </div>
+        <div class="project-body">
+          <div class="project-index">03 / Offline AI desktop tool</div>
+          <h3>Audit-Legal</h3>
+          <p>A desktop application for Indian Chartered Accountants that runs an LLM entirely on the user's machine — no client data ever leaves the laptop, which matters a great deal when the documents are audit files.</p>
+          <p class="label">Problem</p>
+          <p>Accounting firms want the leverage of an LLM over their document base, but sending client financial data to a third-party API is a non-starter under India's DPDP rules, and often against firm policy regardless.</p>
+          <p class="label">Solution</p>
+          <p>A Tauri + Rust shell keeps the app lightweight, a local FastAPI service runs retrieval-augmented generation against a ChromaDB vector store, and Ollama serves a local Llama-3-8B model — the whole pipeline works with the network cable unplugged.</p>
+          <p class="label">Challenges</p>
+          <p>Getting acceptable response latency out of a local 8B model on ordinary hardware meant being deliberate about chunking and retrieval, since there's no cloud GPU to hide an inefficient pipeline behind.</p>
+          <div class="stack-tags"><span>Tauri</span><span>FastAPI</span><span>Ollama</span><span>ChromaDB</span><span>RAG</span></div>
+          <div class="project-links">
+            <a href="https://github.com/vallabhvy/AUDIT-LEGAL" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- TaskPro -->
+      <div class="project flip">
+        <div class="project-meta">
+          <div class="meta-row"><span class="k">Project</span><span class="v">TaskPro</span></div>
+          <div class="meta-row"><span class="k">Role</span><span class="v">Solo, full-stack</span></div>
+          <div class="meta-row"><span class="k">Stack</span><span class="v">React, Node.js, Express, MongoDB, JWT</span></div>
+          <div class="meta-row"><span class="k">Status</span><span class="v">Active</span></div>
+        </div>
+        <div class="project-body">
+          <div class="project-index">04 / Team task management</div>
+          <h3>TaskPro</h3>
+          <p>A task management app where teams create projects, assign work, and track status together in real time — the kind of tool I wanted to exist while working with a small team on other projects.</p>
+          <p class="label">Architecture</p>
+          <p>Node/Express REST APIs with JWT auth, and MongoDB collections modeled around users, projects, and tasks rather than a single flat "todos" table, so filtering and per-project views stay fast as data grows.</p>
+          <p class="label">What I learned</p>
+          <p>Modeling a many-to-many relationship (users across projects, tasks across assignees) in a document database forced me to think harder about query patterns up front than I would have in a relational schema — a useful contrast to the PostgreSQL work on BillNow and MedRack.</p>
+          <div class="stack-tags"><span>Node.js</span><span>Express</span><span>MongoDB</span><span>JWT</span><span>React</span></div>
+          <div class="project-links">
+            <a href="https://github.com/vallabhvy/TaskPro" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dhristi -->
+      <div class="project">
+        <div class="project-meta">
+          <div class="meta-row"><span class="k">Project</span><span class="v">Dhristi</span></div>
+          <div class="meta-row"><span class="k">Role</span><span class="v">Solo</span></div>
+          <div class="meta-row"><span class="k">Stack</span><span class="v">Python, React, AST parsing</span></div>
+          <div class="meta-row"><span class="k">Status</span><span class="v">Active</span></div>
+        </div>
+        <div class="project-body">
+          <div class="project-index">05 / Developer tooling</div>
+          <h3>Dhristi</h3>
+          <p>A Python execution visualizer — it steps through code and shows variable state, recursion depth, and call trees, built because "just read the code" is bad advice for anyone learning recursion for the first time.</p>
+          <p class="label">Solution</p>
+          <p>The interpreter traces execution and parses the AST to reconstruct a step-by-step model of what a program is doing, which the frontend renders as variable timelines and recursion trees instead of a static call stack dump.</p>
+          <div class="stack-tags"><span>Python</span><span>AST</span><span>Execution tracing</span><span>React</span></div>
+          <div class="project-links">
+            <a href="https://github.com/vallabhvy/Dhristi" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ZapRemind -->
+      <div class="project flip">
+        <div class="project-meta">
+          <div class="meta-row"><span class="k">Project</span><span class="v">ZapRemind</span></div>
+          <div class="meta-row"><span class="k">Role</span><span class="v">Solo</span></div>
+          <div class="meta-row"><span class="k">Stack</span><span class="v">React Native, geofencing, background services</span></div>
+          <div class="meta-row"><span class="k">Status</span><span class="v">Active</span></div>
+        </div>
+        <div class="project-body">
+          <div class="project-index">06 / Location-aware mobile app</div>
+          <h3>ZapRemind</h3>
+          <p>A shopping reminder app that surfaces the right reminder when you're actually near the right store, instead of relying on you remembering a note from this morning.</p>
+          <p class="label">Challenges</p>
+          <p>Geofencing that's reliable enough to trust, without draining the battery or nagging the user with false triggers, meant tuning radius and dwell-time thresholds against real background-service constraints on Android rather than trusting the defaults.</p>
+          <div class="stack-tags"><span>React Native</span><span>Geofencing</span><span>Background services</span></div>
+          <div class="project-links">
+            <a href="https://github.com/vallabhvy/ZAPREMIND" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Chat -->
+      <div class="project">
+        <div class="project-meta">
+          <div class="meta-row"><span class="k">Project</span><span class="v">Live Chat</span></div>
+          <div class="meta-row"><span class="k">Role</span><span class="v">Solo, full-stack</span></div>
+          <div class="meta-row"><span class="k">Stack</span><span class="v">React, Node.js, MongoDB, Socket.IO, Cloudinary</span></div>
+          <div class="meta-row"><span class="k">Status</span><span class="v">Active</span></div>
+        </div>
+        <div class="project-body">
+          <div class="project-index">07 / Real-time messaging</div>
+          <h3>Live Chat Application</h3>
+          <p>A real-time 1:1 messaging app — JWT auth over HTTP-only cookies, Socket.IO for live delivery, and Cloudinary for image messages and avatars.</p>
+          <p class="label">Architecture</p>
+          <p>Zustand keeps client state simple on the frontend; Express and Socket.IO run side by side on the backend so the same auth session covers both the REST calls and the socket connection.</p>
+          <div class="stack-tags"><span>Socket.IO</span><span>Express</span><span>MongoDB</span><span>JWT</span><span>Cloudinary</span></div>
+          <div class="project-links">
+            <a href="https://github.com/vallabhvy/LIVE-CHAT-APPLICATION" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PHILOSOPHY -->
+  <section id="philosophy">
+    <div class="wrap reveal">
+      <p class="eyebrow">Engineering philosophy</p>
+      <h2 class="section-title">How I actually think about building software.</h2>
+      <div class="phil-grid">
+        <div class="phil-item">
+          <h3>Boring schemas, interesting problems</h3>
+          <p>I'd rather spend the cleverness budget on the actual problem than on the data model. A financial or medical schema should be obvious in hindsight, not impressive.</p>
+        </div>
+        <div class="phil-item">
+          <h3>Understand the layer below</h3>
+          <p>I want to know what Spring is doing when a request comes in, not just which annotation to add. That habit has caught more bugs than any framework feature has.</p>
+        </div>
+        <div class="phil-item">
+          <h3>Build for the version of me who forgot</h3>
+          <p>Maintainability isn't an abstraction — it's writing code so that I, six months later with no memory of this file, can still change it safely.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="wrap reveal">
+      <p class="eyebrow">Experience</p>
+      <div class="xp-head">
+        <h3>Software Engineering Intern</h3>
+        <span class="dates">Nov 2025 — Feb 2026</span>
+      </div>
+      <div class="xp-org">Makeloop Technology Labs Pvt. Ltd.</div>
+      <ul class="xp-list">
+        <li>Built the operational dashboards finance and ops actually used — billing, invoice management, payment tracking, and Razorpay transaction monitoring — independently, from spec to shipped screen.</li>
+        <li>Wrote the React interfaces for customer management and billing flows, and made the data-heavy views usable with infinite scrolling and debounced search rather than a spinner and a prayer.</li>
+        <li>Wired multiple FastAPI services into the frontend against Swagger contracts, handling request/response mapping, environment config, and error states at the UI layer.</li>
+        <li>Designed Briks, a reusable JSON-configurable component system for composing pages dynamically, and used it to build features in Koadz, the team's no-code website builder.</li>
+        <li>Worked the normal engineering loop — feature branches, pull requests, code review, and debugging alongside the backend engineers who owned the services I was consuming.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- EDUCATION + LEARNING -->
+  <section id="learning">
+    <div class="wrap reveal">
+      <p class="eyebrow">Education &amp; what's next</p>
+      <h2 class="section-title">Where I've been, and what I'm currently reading up on.</h2>
+
+      <div class="timeline" style="margin-bottom:64px;">
+        <div class="t-item">
+          <div class="t-year">2022 — 2026</div>
+          <div class="t-title">B.E, Information Science &amp; Engineering</div>
+          <p class="t-desc">JSS Academy of Technical Education, Bengaluru — CGPA 8.4</p>
+        </div>
+        <div class="t-item">
+          <div class="t-year">Nov 2025 — Feb 2026</div>
+          <div class="t-title">Software Engineering Internship</div>
+          <p class="t-desc">Makeloop Technology Labs — billing dashboards, reusable component systems, FastAPI integration.</p>
+        </div>
+        <div class="t-item">
+          <div class="t-year">2026 →</div>
+          <div class="t-title">Looking for a backend / full-stack engineering role</div>
+          <p class="t-desc">While going deeper on the systems side of the stack.</p>
+        </div>
+      </div>
+
+      <p class="eyebrow">Currently learning</p>
+      <div class="learning-grid">
+        <div class="learning-cell">Distributed Systems</div>
+        <div class="learning-cell">Kafka</div>
+        <div class="learning-cell">Redis</div>
+        <div class="learning-cell">Docker &amp; Kubernetes</div>
+        <div class="learning-cell">System Design</div>
+        <div class="learning-cell">Cloud Infrastructure</div>
+        <div class="learning-cell">Microservices</div>
+        <div class="learning-cell">OCI Foundations</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap reveal contact-wrap">
+      <p class="eyebrow">Contact</p>
+      <h2 class="contact-big">Building something worth talking about? <a href="mailto:vallabhvyelsangikar@gmail.com">Email me</a> — I read everything myself.</h2>
+      <div class="contact-links">
+        <a class="btn btn-solid" href="mailto:vallabhvyelsangikar@gmail.com">vallabhvyelsangikar@gmail.com</a>
+        <a class="btn btn-ghost" href="https://github.com/vallabh" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn btn-ghost" href="https://linkedin.com/in/vallabh" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn btn-ghost" href="#" id="resumeBtn2">Resume</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>© 2026 Vallabh Yelsangikar. Built by hand, no template.</span>
+    <span><a href="#top">Back to top ↑</a></span>
+  </div>
+</footer>
+
+<script>
+  // mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open);
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  // scroll reveal
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced) {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+  } else {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  }
+
+  // typing effect
+  const lines = [
+    'billing systems that reconcile Razorpay payments without double counting.',
+    'a health record system where the audit trail lives on-chain, not in an admin panel.',
+    'a fully offline AI tool for accountants — no client data ever leaves the laptop.',
+    'real-time chat with Socket.IO, and a Python execution visualizer for recursion trees.'
+  ];
+  const out = document.getElementById('typed-out');
+  let li = 0, ci = 0, deleting = false;
+  function tick() {
+    if (!out) return;
+    const full = lines[li];
+    if (!deleting) {
+      ci++;
+      out.textContent = full.slice(0, ci);
+      if (ci === full.length) { deleting = true; setTimeout(tick, 1600); return; }
+    } else {
+      ci--;
+      out.textContent = full.slice(0, ci);
+      if (ci === 0) { deleting = false; li = (li + 1) % lines.length; }
+    }
+    setTimeout(tick, deleting ? 22 : 34);
+  }
+  if (reduced) { out.textContent = lines[0]; } else { tick(); }
+
+  // resume buttons (no file attached — points to email as fallback)
+  document.querySelectorAll('#resumeBtn, #resumeBtn2').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      alert('Drop your hosted resume PDF link here, or wire this button to the file in /mnt/user-data/outputs.');
+    });
+  });
+</script>
+
+</body>
+</html>
