@@ -33,7 +33,7 @@ export const profile = {
   availability: "open to backend & full-stack roles",
   email: "vallabhvyelsangikar@gmail.com",
   github: "https://github.com/vallabhvy",
-  linkedin: "www.linkedin.com/in/vallabh-v-yelsangikar-baa316256",
+  linkedin: "https://www.linkedin.com/in/vallabh-v-yelsangikar-baa316256",
   resumeUrl: "/Vallabh_V_Yelsangikar_resume.pdf",
   resumeDownloadName: "Vallabh_V_Yelsangikar_resume.pdf",
   tagline:
