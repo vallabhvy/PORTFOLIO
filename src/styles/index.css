@@ -3,6 +3,8 @@
 @theme {
   --font-sans: "Inter", ui-sans-serif, -apple-system, system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-loud: "Fredoka", ui-rounded, "Trebuchet MS", sans-serif;
+  --font-blast: "Bungee", "Fredoka", ui-rounded, sans-serif;
 
   --color-bg: #ffffff;
   --color-fg: #0a0a0a;
@@ -86,4 +88,237 @@
     #000 92%,
     transparent
   );
+}
+
+/* Signal Room CTA — same language as /behind-the-facade */
+.know-more {
+  --mx-bg: #06040f;
+  --mx-ink: #f4f0ff;
+  --mx-muted: #7a7394;
+  --mx-hot: #ff3d9a;
+  --mx-volt: #7dffb3;
+  --mx-sun: #ffc14d;
+  --mx-ice: #5ce1ff;
+  --mx-violet: #8b5cff;
+  --font-display: "Syne", "Arial Black", sans-serif;
+  --font-body: "Outfit", system-ui, sans-serif;
+}
+
+.know-more__teaser {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--mx-muted);
+}
+
+.signal-btn {
+  border: 1px solid rgb(255 255 255 / 0.16);
+  background: var(--mx-bg);
+  color: var(--mx-ink);
+  cursor: pointer;
+  box-shadow:
+    0 0 0 1px rgb(0 0 0 / 0.2) inset,
+    0 12px 36px rgb(6 4 15 / 0.35),
+    -6px 0 28px rgb(255 61 154 / 0.18),
+    6px 0 28px rgb(92 225 255 / 0.14);
+  transition:
+    transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+  isolation: isolate;
+}
+
+.signal-btn__void {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    radial-gradient(ellipse 80% 120% at 15% 30%, #2a0a3d 0%, transparent 55%),
+    radial-gradient(ellipse 70% 100% at 90% 70%, #0a2a3d 0%, transparent 50%),
+    var(--mx-bg);
+  z-index: 0;
+}
+
+.signal-btn__prism {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.signal-btn__prism::before {
+  content: "";
+  position: absolute;
+  inset: -50% -30%;
+  filter: blur(14px);
+  opacity: 0.55;
+}
+
+.signal-btn__prism--a::before {
+  background: linear-gradient(
+    100deg,
+    transparent,
+    var(--mx-hot),
+    var(--mx-sun),
+    transparent
+  );
+  animation: signal-sweep 5s ease-in-out infinite alternate;
+}
+
+.signal-btn__prism--b::before {
+  background: linear-gradient(
+    100deg,
+    transparent,
+    var(--mx-ice),
+    var(--mx-violet),
+    transparent
+  );
+  animation: signal-sweep 7s ease-in-out infinite alternate-reverse;
+  opacity: 0.4;
+}
+
+.signal-btn__orbit {
+  position: absolute;
+  inset: -6px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.signal-btn__ring {
+  position: absolute;
+  inset: 8px 18%;
+  border: 1px solid rgb(255 255 255 / 0.12);
+  border-radius: 999px;
+  opacity: 0.7;
+}
+
+.signal-btn__node {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  margin: -3.5px;
+  box-shadow: 0 0 12px currentColor;
+}
+
+.signal-btn__node--1 {
+  color: var(--mx-hot);
+  background: currentColor;
+  animation: signal-orbit-a 4.5s linear infinite;
+}
+
+.signal-btn__node--2 {
+  color: var(--mx-ice);
+  background: currentColor;
+  animation: signal-orbit-b 6s linear infinite;
+}
+
+.signal-btn__node--3 {
+  color: var(--mx-sun);
+  background: currentColor;
+  animation: signal-orbit-c 3.6s linear infinite;
+}
+
+.signal-btn__label {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: linear-gradient(
+    120deg,
+    #fff 10%,
+    var(--mx-sun) 35%,
+    var(--mx-hot) 60%,
+    var(--mx-ice) 90%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: signal-inkshift 6s ease-in-out infinite alternate;
+}
+
+.signal-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  border-color: rgb(125 255 179 / 0.45);
+  box-shadow:
+    0 0 0 1px rgb(0 0 0 / 0.2) inset,
+    0 16px 44px rgb(6 4 15 / 0.4),
+    0 0 32px rgb(125 255 179 / 0.28),
+    -8px 0 36px rgb(255 61 154 / 0.28),
+    8px 0 36px rgb(92 225 255 / 0.22);
+}
+
+.signal-btn:hover .signal-btn__label {
+  animation-duration: 2s;
+}
+
+.signal-btn:active {
+  transform: translateY(-1px) scale(0.99);
+}
+
+.signal-btn:focus-visible {
+  outline: 2px solid var(--mx-ice);
+  outline-offset: 4px;
+}
+
+@keyframes signal-sweep {
+  from {
+    transform: translateX(-12%) rotate(-4deg);
+  }
+  to {
+    transform: translateX(12%) rotate(4deg);
+  }
+}
+
+@keyframes signal-orbit-a {
+  from {
+    transform: rotate(0deg) translateX(118px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(118px) rotate(-360deg);
+  }
+}
+
+@keyframes signal-orbit-b {
+  from {
+    transform: rotate(120deg) translateX(132px) rotate(-120deg);
+  }
+  to {
+    transform: rotate(480deg) translateX(132px) rotate(-480deg);
+  }
+}
+
+@keyframes signal-orbit-c {
+  from {
+    transform: rotate(240deg) translateX(98px) rotate(-240deg);
+  }
+  to {
+    transform: rotate(600deg) translateX(98px) rotate(-600deg);
+  }
+}
+
+@keyframes signal-inkshift {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 100% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .signal-btn__prism,
+  .signal-btn__node,
+  .signal-btn__label {
+    animation: none !important;
+  }
 }
