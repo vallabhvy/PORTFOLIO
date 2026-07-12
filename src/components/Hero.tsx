@@ -17,27 +17,22 @@ export function Hero() {
     >
       <Container>
         <motion.div variants={stagger} initial="hidden" animate="show">
-          <motion.p
-            variants={fadeUp}
-            className="mb-7 flex items-center gap-2.5 font-mono text-[13px] text-muted"
-          >
-            <span className="relative flex h-[7px] w-[7px]">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-fg opacity-40" />
-              <span className="relative inline-flex h-[7px] w-[7px] rounded-full bg-fg" />
-            </span>
-            {profile.location} — {profile.availability}
-          </motion.p>
-
-          <motion.h1
-            variants={fadeUp}
-            className="mb-1 font-sans text-[clamp(42px,8vw,84px)] font-bold leading-[1.02] tracking-[-0.03em]"
-          >
-            {profile.name}
-          </motion.h1>
-
-          <div className="mb-8 mt-5 max-w-md">
-            <KnowMoreButton />
-          </div>
+          <KnowMoreButton
+            status={
+              <p className="mb-0 flex items-center gap-2.5 font-mono text-[13px] text-muted">
+                <span className="relative flex h-[7px] w-[7px]">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-fg opacity-40" />
+                  <span className="relative inline-flex h-[7px] w-[7px] rounded-full bg-fg" />
+                </span>
+                {profile.location} — {profile.availability}
+              </p>
+            }
+            name={
+              <h1 className="m-0 font-sans text-[clamp(28px,6.5vw,84px)] font-bold leading-[1.05] tracking-[-0.03em]">
+                {profile.name}
+              </h1>
+            }
+          />
 
           <motion.p
             variants={fadeUp}

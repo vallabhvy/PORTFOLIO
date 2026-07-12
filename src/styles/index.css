@@ -104,6 +104,35 @@
   --font-body: "Outfit", system-ui, sans-serif;
 }
 
+/* Desktop: status full width, then name | portal (teaser+button) */
+.hero-flow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 340px);
+  grid-template-areas:
+    "status status"
+    "name portal";
+  column-gap: 1.75rem;
+  row-gap: 1.1rem;
+  align-items: center;
+}
+
+.hero-flow__status {
+  grid-area: status;
+  margin-bottom: 0.4rem;
+}
+
+.hero-flow__name {
+  grid-area: name;
+  min-width: 0;
+}
+
+.hero-flow__portal {
+  grid-area: portal;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
 .know-more__teaser {
   margin: 0;
   font-family: var(--font-body);
@@ -114,15 +143,16 @@
 }
 
 .signal-btn {
-  border: 1px solid rgb(255 255 255 / 0.2);
+  border: 1px solid rgb(255 255 255 / 0.16);
   background: var(--mx-bg);
   color: var(--mx-ink);
   cursor: pointer;
+  padding: 1.05rem 2rem;
   box-shadow:
     0 0 0 1px rgb(0 0 0 / 0.2) inset,
-    0 14px 40px rgb(6 4 15 / 0.45),
-    -6px 0 28px rgb(255 61 154 / 0.22),
-    6px 0 28px rgb(92 225 255 / 0.18);
+    0 12px 36px rgb(6 4 15 / 0.35),
+    -6px 0 28px rgb(255 61 154 / 0.18),
+    6px 0 28px rgb(92 225 255 / 0.14);
   transition:
     transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 0.2s ease,
@@ -232,7 +262,6 @@
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #fff;
   background: linear-gradient(
     120deg,
     #fff 10%,
@@ -243,16 +272,8 @@
   background-size: 200% 100%;
   -webkit-background-clip: text;
   background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: transparent;
   animation: signal-inkshift 6s ease-in-out infinite alternate;
-}
-
-@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
-  .signal-btn__label {
-    color: #7dffb3;
-    -webkit-text-fill-color: currentColor;
-    background: none;
-  }
 }
 
 .signal-btn:hover {
@@ -321,6 +342,70 @@
   }
   to {
     background-position: 100% 50%;
+  }
+}
+
+@media (max-width: 640px) {
+  /*
+   * Mobile: pull the portal to the top (under the sticky nav).
+   * Name and status stay in the normal hero flow below — no crowding.
+   */
+  section[aria-label="Introduction"] {
+    padding-top: 1.25rem;
+  }
+
+  .hero-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .hero-flow__portal {
+    order: -1;
+    position: sticky;
+    top: 4rem; /* sits under the 64px navbar */
+    z-index: 40;
+    gap: 0.45rem;
+    margin: -0.25rem -1.5rem 1.85rem;
+    padding: 0.55rem 1.5rem 0.75rem;
+    background: rgb(255 255 255 / 0.92);
+    border-bottom: 1px solid var(--color-line);
+    backdrop-filter: blur(12px);
+  }
+
+  .hero-flow__status {
+    order: 0;
+    margin-bottom: 0.85rem;
+  }
+
+  .hero-flow__name {
+    order: 1;
+    margin-top: 0.35rem;
+  }
+
+  .know-more__teaser {
+    font-size: 12.5px;
+    line-height: 1.4;
+    color: #5c5670;
+  }
+
+  .signal-btn {
+    padding: 0.65rem 1rem;
+    box-shadow:
+      0 0 0 1px rgb(0 0 0 / 0.15) inset,
+      0 8px 22px rgb(6 4 15 / 0.28),
+      -3px 0 14px rgb(255 61 154 / 0.16),
+      3px 0 14px rgb(92 225 255 / 0.12);
+  }
+
+  .signal-btn__label {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-align: center;
+  }
+
+  .signal-btn__orbit {
+    display: none;
   }
 }
 

@@ -79,9 +79,12 @@ export function MaximalPage() {
       </aside>
 
       <div className="mx__exit">
-        <p className="mx__exit-hint">
+        <p className="mx__exit-hint mx__exit-hint--desk">
           You still need to know about my projects and work experience — please
           check my portfolio.
+        </p>
+        <p className="mx__exit-hint mx__exit-hint--mob">
+          Projects & experience are on the main page.
         </p>
         <button
           type="button"
