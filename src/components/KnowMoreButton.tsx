@@ -8,7 +8,7 @@ export function KnowMoreButton() {
   return (
     <motion.div
       variants={fadeUp}
-      className="know-more relative z-10 flex max-w-[340px] shrink-0 flex-col gap-3 self-start lg:self-center"
+      className="know-more relative z-10 flex w-full max-w-[340px] flex-col gap-3"
     >
       <p className="know-more__teaser">
         If you're here to check my profile, this page has all my projects and work experience. But if you're here to know more

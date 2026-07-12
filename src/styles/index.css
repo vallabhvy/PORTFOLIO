@@ -110,19 +110,19 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 1.45;
-  color: var(--mx-muted);
+  color: #4b4563;
 }
 
 .signal-btn {
-  border: 1px solid rgb(255 255 255 / 0.16);
+  border: 1px solid rgb(255 255 255 / 0.2);
   background: var(--mx-bg);
   color: var(--mx-ink);
   cursor: pointer;
   box-shadow:
     0 0 0 1px rgb(0 0 0 / 0.2) inset,
-    0 12px 36px rgb(6 4 15 / 0.35),
-    -6px 0 28px rgb(255 61 154 / 0.18),
-    6px 0 28px rgb(92 225 255 / 0.14);
+    0 14px 40px rgb(6 4 15 / 0.45),
+    -6px 0 28px rgb(255 61 154 / 0.22),
+    6px 0 28px rgb(92 225 255 / 0.18);
   transition:
     transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 0.2s ease,
@@ -232,6 +232,7 @@
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  color: #fff;
   background: linear-gradient(
     120deg,
     #fff 10%,
@@ -242,8 +243,16 @@
   background-size: 200% 100%;
   -webkit-background-clip: text;
   background-clip: text;
-  color: transparent;
+  -webkit-text-fill-color: transparent;
   animation: signal-inkshift 6s ease-in-out infinite alternate;
+}
+
+@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+  .signal-btn__label {
+    color: #7dffb3;
+    -webkit-text-fill-color: currentColor;
+    background: none;
+  }
 }
 
 .signal-btn:hover {

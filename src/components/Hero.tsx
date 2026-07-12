@@ -28,13 +28,14 @@ export function Hero() {
             {profile.location} — {profile.availability}
           </motion.p>
 
-          <div className="mb-1 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
-            <motion.h1
-              variants={fadeUp}
-              className="font-sans text-[clamp(42px,8vw,84px)] font-bold leading-[1.02] tracking-[-0.03em]"
-            >
-              {profile.name}
-            </motion.h1>
+          <motion.h1
+            variants={fadeUp}
+            className="mb-1 font-sans text-[clamp(42px,8vw,84px)] font-bold leading-[1.02] tracking-[-0.03em]"
+          >
+            {profile.name}
+          </motion.h1>
+
+          <div className="mb-8 mt-5 max-w-md">
             <KnowMoreButton />
           </div>
 
