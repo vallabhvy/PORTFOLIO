@@ -1,10 +1,14 @@
 import { motion } from "framer-motion";
-import { FiArrowUpRight, FiDownload, FiGithub, FiLinkedin } from "react-icons/fi";
+import {
+  FiArrowUpRight,
+  FiDownload,
+  FiGithub,
+  FiLinkedin,
+} from "react-icons/fi";
 import { profile, heroTyping } from "../data/content";
 import { useTypewriter } from "../hooks/useTypewriter";
 import { Container } from "./primitives/Container";
 import { ButtonLink } from "./primitives/Button";
-import { KnowMoreButton } from "./KnowMoreButton";
 import { fadeUp, stagger } from "../lib/motion";
 
 export function Hero() {
@@ -17,22 +21,20 @@ export function Hero() {
     >
       <Container>
         <motion.div variants={stagger} initial="hidden" animate="show">
-          <KnowMoreButton
-            status={
-              <p className="mb-0 flex items-center gap-2.5 font-mono text-[13px] text-muted">
-                <span className="relative flex h-[7px] w-[7px]">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-fg opacity-40" />
-                  <span className="relative inline-flex h-[7px] w-[7px] rounded-full bg-fg" />
-                </span>
-                {profile.location} — {profile.availability}
-              </p>
-            }
-            name={
-              <h1 className="m-0 font-sans text-[clamp(28px,6.5vw,84px)] font-bold leading-[1.05] tracking-[-0.03em]">
-                {profile.name}
-              </h1>
-            }
-          />
+          <div className="mb-1">
+            <p className="mb-0 flex items-center gap-2.5 font-mono text-[13px] text-muted">
+              <span className="relative flex h-[7px] w-[7px]">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-fg opacity-40" />
+                <span className="relative inline-flex h-[7px] w-[7px] rounded-full bg-fg" />
+              </span>
+              {profile.location} — {profile.availability}
+            </p>
+
+            <h1 className="mt-4 m-0 font-sans text-[clamp(28px,6.5vw,84px)] font-bold leading-[1.05] tracking-[-0.03em] text-left">
+              <span className="block">Vallabh</span>
+              <span className="block">Yelsangikar</span>
+            </h1>
+          </div>
 
           <motion.p
             variants={fadeUp}
@@ -92,7 +94,8 @@ export function Hero() {
           transition={{ delay: 1.1, duration: 0.8 }}
           className="inline-flex items-center gap-2 font-mono text-[12px] text-faint transition-colors hover:text-fg"
         >
-          Scroll to read more <FiArrowUpRight aria-hidden className="rotate-90" />
+          Scroll to read more{" "}
+          <FiArrowUpRight aria-hidden className="rotate-90" />
         </motion.a>
       </Container>
     </section>
