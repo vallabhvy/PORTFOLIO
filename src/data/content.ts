@@ -114,39 +114,50 @@ export type Project = {
   stack: TechTag[];
   github?: string;
   demo?: string;
+  thumbnail?: string;
+  thumbnailFit?: "cover" | "contain";
+  featured?: boolean;
 };
 
 export const projects: Project[] = [
   {
-    id: "billnow",
+    id: "flowspelt",
     index: "01",
-    category: "Billing & POS",
-    name: "BillNow",
-    role: "Solo, full-stack",
-    status: "Active",
+    category: "Developer Tooling & Systems",
+    name: "Flowspelt",
+    role: "Creator & Full-stack Architect",
+    status: "In progress",
+    featured: true,
     summary:
-      "A billing and invoicing system for small retail businesses — order management, invoice generation, and payment tracking, built the way an actual finance team would need it, not a demo.",
+      "An offline developer journal and persistent work-session recorder that captures terminal activity, git diffs, and debugging contexts into searchable, narrative plain-English sessions.",
     blocks: [
       {
         label: "Problem",
-        body: "Most small-shop billing tools are either spreadsheets held together by habit, or POS software too heavy for a single till. I wanted something that generates a correct invoice, tracks a payment against it, and doesn't lose data if two orders come in at once.",
+        body: "When building complex features with AI or multiple terminal tabs, git commits only show what changed — not why or what errors were encountered. Weeks later, developers waste hours deciphering cryptic diffs with zero context.",
       },
       {
         label: "Architecture",
-        body: "Spring Boot REST APIs backed by normalized PostgreSQL tables for customers, invoices, orders, and payments — the schema is deliberately boring, because financial records are the one place I didn't want to be clever. Razorpay handles UPI and cash reconciliation on top of that.",
+        body: "Native cross-platform desktop engine built with Tauri, Rust, and React/TypeScript. Runs entirely offline and local-first with fast SQLite caching and embedded vector search for private, instant contextual recall.",
       },
       {
-        label: "Challenges",
-        body: "Getting Razorpay's webhook payloads to map cleanly onto internal order state without double-counting a payment took more iteration than the rest of the payment flow combined. I ended up standardizing all JSON handling through Jackson's ObjectMapper to stop silent parsing mismatches between the two systems.",
+        label: "Impact",
+        body: "Eliminates developer memory loss by automatically linking code changes, terminal outputs, and architectural decisions into structured timeline logs without leaking proprietary code to external servers.",
       },
     ],
     stack: [
-      { name: "Spring Boot", icon: SiSpringboot },
-      { name: "PostgreSQL", icon: SiPostgresql },
+      { name: "Tauri", icon: SiTauri },
+      { name: "Rust", icon: SiRust },
       { name: "React", icon: SiReact },
+      { name: "TypeScript", icon: SiTypescript },
+      { name: "TailwindCSS", icon: SiTailwindcss },
+      { name: "Vite", icon: SiVite },
     ],
-    github: "https://github.com/vallabhvy/BILL-NOW",
+    github: "https://github.com/vallabhvy/AI-DRIVEN-DEVELOPER-JOURNAL",
+    demo: "https://www.flowspelt.com",
+    thumbnail: "/flowspelt logo full with bg.png",
+    thumbnailFit: "contain",
   },
+
   {
     id: "medrack",
     index: "02",
@@ -154,6 +165,7 @@ export const projects: Project[] = [
     name: "MedRack",
     role: "Solo, full-stack",
     status: "Active",
+    featured: true,
     summary:
       "An electronic health record system built around a simple idea: a patient should control access to their own records, and there should be a verifiable audit trail of who touched them and when.",
     blocks: [
@@ -179,138 +191,42 @@ export const projects: Project[] = [
     ],
     github: "https://github.com/vallabhvy/MEDRACK",
   },
+
   {
-    id: "audit-legal",
+    id: "billnow",
     index: "03",
-    category: "Offline AI desktop tool",
-    name: "Audit-Legal",
+    category: "Billing & POS",
+    name: "BillNow",
     role: "Solo, full-stack",
-    status: "In progress",
+    status: "Active",
+    featured: true,
     summary:
-      "A desktop application for Indian Chartered Accountants that runs an LLM entirely on the user's machine — no client data ever leaves the laptop, which matters a great deal when the documents are audit files.",
+      "A billing and invoicing system for small retail businesses — order management, invoice generation, and payment tracking, built the way an actual finance team would need it, not a demo.",
     blocks: [
       {
         label: "Problem",
-        body: "Accounting firms want the leverage of an LLM over their document base, but sending client financial data to a third-party API is a non-starter under India's DPDP rules, and often against firm policy regardless.",
+        body: "Most small-shop billing tools are either spreadsheets held together by habit, or POS software too heavy for a single till. I wanted something that generates a correct invoice, tracks a payment against it, and doesn't lose data if two orders come in at once.",
       },
       {
-        label: "Solution",
-        body: "A Tauri + Rust shell keeps the app lightweight, a local FastAPI service runs retrieval-augmented generation against a ChromaDB vector store, and Ollama serves a local Llama-3-8B model — the whole pipeline works with the network cable unplugged.",
+        label: "Architecture",
+        body: "Spring Boot REST APIs backed by normalized PostgreSQL tables for customers, invoices, orders, and payments — the schema is deliberately boring, because financial records are the one place I didn't want to be clever. Razorpay handles UPI and cash reconciliation on top of that.",
       },
       {
         label: "Challenges",
-        body: "Getting acceptable response latency out of a local 8B model on ordinary hardware meant being deliberate about chunking and retrieval, since there's no cloud GPU to hide an inefficient pipeline behind.",
+        body: "Getting Razorpay's webhook payloads to map cleanly onto internal order state without double-counting a payment took more iteration than the rest of the payment flow combined. I ended up standardizing all JSON handling through Jackson's ObjectMapper to stop silent parsing mismatches between the two systems.",
       },
     ],
     stack: [
-      { name: "Tauri", icon: SiTauri },
-      { name: "Rust", icon: SiRust },
-      { name: "FastAPI", icon: SiFastapi },
-      { name: "Ollama", icon: SiOllama },
-    ],
-    github: "https://github.com/vallabhvy/AUDIT-LEGAL",
-  },
-  {
-    id: "dhristi",
-    index: "04",
-    category: "Developer tooling",
-    name: "Dhristi",
-    role: "Solo",
-    status: "In progress",
-    summary:
-      'A Python execution visualizer — it steps through code and shows variable state, recursion depth, and call trees, built because "just read the code" is bad advice for anyone learning recursion for the first time.',
-    blocks: [
-      {
-        label: "Solution",
-        body: "The interpreter traces execution and parses the AST to reconstruct a step-by-step model of what a program is doing, which the frontend renders as variable timelines and recursion trees instead of a static call stack dump.",
-      },
-      {
-        label: "What I learned",
-        body: "Reconstructing intuitive visual state from a raw execution trace is mostly a data-modeling problem — deciding what to capture at each step, and what to throw away, matters far more than the rendering.",
-      },
-    ],
-    stack: [
-      { name: "Python", icon: SiPython },
-      { name: "AST tracing" },
+      { name: "Spring Boot", icon: SiSpringboot },
+      { name: "PostgreSQL", icon: SiPostgresql },
       { name: "React", icon: SiReact },
     ],
-    github: "https://github.com/vallabhvy/Dhristi",
+    github: "https://github.com/vallabhvy/BILL-NOW",
   },
-  {
-    id: "zapremind",
-    index: "05",
-    category: "Location-aware mobile app",
-    name: "ZapRemind",
-    role: "Solo",
-    status: "In progress",
-    summary:
-      "A shopping reminder app that surfaces the right reminder when you're actually near the right store, instead of relying on you remembering a note from this morning.",
-    blocks: [
-      {
-        label: "Challenges",
-        body: "Geofencing that's reliable enough to trust, without draining the battery or nagging the user with false triggers, meant tuning radius and dwell-time thresholds against real background-service constraints on Android rather than trusting the defaults.",
-      },
-    ],
-    stack: [
-      { name: "React Native", icon: SiReact },
-      { name: "Geofencing" },
-      { name: "Background services" },
-    ],
-    github: "https://github.com/vallabhvy/ZAPREMIND",
-  },
-  {
-    id: "live-chat",
-    index: "06",
-    category: "Real-time messaging",
-    name: "Live Chat Application",
-    role: "Solo, full-stack",
-    status: "Active",
-    summary:
-      "A real-time 1:1 messaging app — JWT auth over HTTP-only cookies, Socket.IO for live delivery, and Cloudinary for image messages and avatars.",
-    blocks: [
-      {
-        label: "Architecture",
-        body: "Zustand keeps client state simple on the frontend; Express and Socket.IO run side by side on the backend so the same auth session covers both the REST calls and the socket connection.",
-      },
-    ],
-    stack: [
-      { name: "Socket.IO", icon: SiSocketdotio },
-      { name: "Express", icon: SiExpress },
-      { name: "MongoDB", icon: SiMongodb },
-      { name: "Cloudinary", icon: SiCloudinary },
-    ],
-    github: "https://github.com/vallabhvy/LIVE-CHAT-APPLICATION",
-  },
-  {
-    id: "taskpro",
-    index: "07",
-    category: "Team task management",
-    name: "TaskPro",
-    role: "Solo, full-stack",
-    status: "Active",
-    summary:
-      "A task management app where teams create projects, assign work, and track status together in real time — the kind of tool I wanted to exist while working with a small team on other projects.",
-    blocks: [
-      {
-        label: "Architecture",
-        body: 'Node/Express REST APIs with JWT auth, and MongoDB collections modeled around users, projects, and tasks rather than a single flat "todos" table, so filtering and per-project views stay fast as data grows.',
-      },
-      {
-        label: "What I learned",
-        body: "Modeling a many-to-many relationship (users across projects, tasks across assignees) in a document database forced me to think harder about query patterns up front than I would have in a relational schema — a useful contrast to the PostgreSQL work on BillNow and MedRack.",
-      },
-    ],
-    stack: [
-      { name: "Node.js", icon: SiNodedotjs },
-      { name: "Express", icon: SiExpress },
-      { name: "MongoDB", icon: SiMongodb },
-      { name: "React", icon: SiReact },
-    ],
-    github: "https://github.com/vallabhvy/TaskPro",
-  },
+
   {
     id: "vyncrafts",
-    index: "08",
+    index: "04",
     category: "Early-stage digital studio",
     name: "VynCrafts",
     role: "Developer, full-stack",
@@ -340,6 +256,142 @@ export const projects: Project[] = [
       { name: "Resend" },
     ],
     github: "https://github.com/vallabhvy/VYNCRAFTS",
+    demo: "https://www.vyncrafts.com",
+    thumbnail: "/vyncraft_logo_v1.png",
+    thumbnailFit: "contain",
+  },
+
+  {
+    id: "dhristi",
+    index: "05",
+    category: "Developer tooling",
+    name: "Dhristi",
+    role: "Solo",
+    status: "In progress",
+    summary:
+      'A Python execution visualizer — it steps through code and shows variable state, recursion depth, and call trees, built because "just read the code" is bad advice for anyone learning recursion for the first time.',
+    blocks: [
+      {
+        label: "Solution",
+        body: "The interpreter traces execution and parses the AST to reconstruct a step-by-step model of what a program is doing, which the frontend renders as variable timelines and recursion trees instead of a static call stack dump.",
+      },
+      {
+        label: "What I learned",
+        body: "Reconstructing intuitive visual state from a raw execution trace is mostly a data-modeling problem — deciding what to capture at each step, and what to throw away, matters far more than the rendering.",
+      },
+    ],
+    stack: [
+      { name: "Python", icon: SiPython },
+      { name: "AST tracing" },
+      { name: "React", icon: SiReact },
+    ],
+    github: "https://github.com/vallabhvy/Dhristi",
+    demo: "https://www.dhristi.in",
+    thumbnail: "/dhristilogo1.png",
+  },
+
+  {
+    id: "audit-legal",
+    index: "06",
+    category: "Offline AI desktop tool",
+    name: "Audit-Legal",
+    role: "Solo, full-stack",
+    status: "In progress",
+    summary:
+      "A desktop application for Indian Chartered Accountants that runs an LLM entirely on the user's machine — no client data ever leaves the laptop, which matters a great deal when the documents are audit files.",
+    blocks: [
+      {
+        label: "Problem",
+        body: "Accounting firms want the leverage of an LLM over their document base, but sending client financial data to a third-party API is a non-starter under India's DPDP rules, and often against firm policy regardless.",
+      },
+      {
+        label: "Solution",
+        body: "A Tauri + Rust shell keeps the app lightweight, a local FastAPI service runs retrieval-augmented generation against a ChromaDB vector store, and Ollama serves a local Llama-3-8B model — the whole pipeline works with the network cable unplugged.",
+      },
+      {
+        label: "Challenges",
+        body: "Getting acceptable response latency out of a local 8B model on ordinary hardware meant being deliberate about chunking and retrieval, since there's no cloud GPU to hide an inefficient pipeline behind.",
+      },
+    ],
+    stack: [
+      { name: "Tauri", icon: SiTauri },
+      { name: "Rust", icon: SiRust },
+      { name: "FastAPI", icon: SiFastapi },
+      { name: "Ollama", icon: SiOllama },
+    ],
+    github: "https://github.com/vallabhvy/AUDIT-LEGAL",
+  },
+  {
+    id: "zapremind",
+    index: "07",
+    category: "Location-aware mobile app",
+    name: "ZapRemind",
+    role: "Solo",
+    status: "In progress",
+    summary:
+      "A shopping reminder app that surfaces the right reminder when you're actually near the right store, instead of relying on you remembering a note from this morning.",
+    blocks: [
+      {
+        label: "Challenges",
+        body: "Geofencing that's reliable enough to trust, without draining the battery or nagging the user with false triggers, meant tuning radius and dwell-time thresholds against real background-service constraints on Android rather than trusting the defaults.",
+      },
+    ],
+    stack: [
+      { name: "React Native", icon: SiReact },
+      { name: "Geofencing" },
+      { name: "Background services" },
+    ],
+    github: "https://github.com/vallabhvy/ZAPREMIND",
+  },
+  {
+    id: "live-chat",
+    index: "08",
+    category: "Real-time messaging",
+    name: "Live Chat Application",
+    role: "Solo, full-stack",
+    status: "Active",
+    summary:
+      "A real-time 1:1 messaging app — JWT auth over HTTP-only cookies, Socket.IO for live delivery, and Cloudinary for image messages and avatars.",
+    blocks: [
+      {
+        label: "Architecture",
+        body: "Zustand keeps client state simple on the frontend; Express and Socket.IO run side by side on the backend so the same auth session covers both the REST calls and the socket connection.",
+      },
+    ],
+    stack: [
+      { name: "Socket.IO", icon: SiSocketdotio },
+      { name: "Express", icon: SiExpress },
+      { name: "MongoDB", icon: SiMongodb },
+      { name: "Cloudinary", icon: SiCloudinary },
+    ],
+    github: "https://github.com/vallabhvy/LIVE-CHAT-APPLICATION",
+  },
+  {
+    id: "taskpro",
+    index: "09",
+    category: "Team task management",
+    name: "TaskPro",
+    role: "Solo, full-stack",
+    status: "Active",
+    summary:
+      "A task management app where teams create projects, assign work, and track status together in real time — the kind of tool I wanted to exist while working with a small team on other projects.",
+    blocks: [
+      {
+        label: "Architecture",
+        body: 'Node/Express REST APIs with JWT auth, and MongoDB collections modeled around users, projects, and tasks rather than a single flat "todos" table, so filtering and per-project views stay fast as data grows.',
+      },
+      {
+        label: "What I learned",
+        body: "Modeling a many-to-many relationship (users across projects, tasks across assignees) in a document database forced me to think harder about query patterns up front than I would have in a relational schema — a useful contrast to the PostgreSQL work on BillNow and MedRack.",
+      },
+    ],
+    stack: [
+      { name: "Node.js", icon: SiNodedotjs },
+      { name: "Express", icon: SiExpress },
+      { name: "MongoDB", icon: SiMongodb },
+      { name: "React", icon: SiReact },
+    ],
+    github: "https://github.com/vallabhvy/TaskPro",
   },
 ];
 

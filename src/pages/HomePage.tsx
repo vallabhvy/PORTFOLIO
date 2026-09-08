@@ -25,8 +25,8 @@ export function HomePage() {
         <div id="top" />
         <Hero />
         <About />
-        <Skills />
         <Projects />
+        <Skills />
         <Philosophy />
         <Experience />
         <Learning />
